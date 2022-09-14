@@ -1,0 +1,4 @@
+id,first_name,last_name,email,postcode,date
+1,John,Smith,john.smith@example.com,4151,2022-08-01 19:30
+2,Jane,Doe,jane.doe@example.com,2080,2022-08-05 16:20
+3,Jo,Citizen,,2077,2022-09-01 08:13

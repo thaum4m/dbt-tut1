@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: mock_source
+    description: Using mock/test data as a source for transformation.
+    database: dbt_tut1
+    schema: public
+    tables:
+      - name: test_customer
+      - name: test_order

@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  dbt_tut1:
+    # Use custom image via Dockerfile to install multiple dbt adapters.
+    build:
+      context: .
+      args:
+        dbt_adapters: $DBT_ADAPTERS
+    image: dbt/dbt-multi
+    command: ${CMD:-ls}
+    volumes:
+      - type: bind
+        source: ../
+        target: /usr/app
+      - type: bind
+        source: ./profiles.yml
+        target: /root/.dbt/profiles.yml
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: dbt
+      POSTGRES_PASSWORD: dbt123
+      POSTGRES_DB: dbt_tut1
+    volumes:
+      #- ./raw_data:/input_data
+      #- ./temp:/temp
+      - ./postgres:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - "5432:5432"
